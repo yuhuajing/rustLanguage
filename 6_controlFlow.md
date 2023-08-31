@@ -61,7 +61,7 @@ println!("Launch!");
 循环`for conditions{}`
 <details>
 <summary>Example</summary>
-其中 `a..=b(a<=i<=b)`和`a..b(a<=i<b)` 表示遍历a~b，`=`表示终止条件是`<` 或者`<=`
+其中 `a..=b(a<=i<=b)`和`a..b(a<=i`<`b)` 表示遍历a~b，`=`表示终止条件是`<` 或者`<=`
 
 ```text
 
