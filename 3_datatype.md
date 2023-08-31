@@ -24,7 +24,7 @@ fn main() {
 无符号变量仅表示正整数, examples <code>u8 means 0~255</code>
 </details>
 
-- Floating-point numbers
+### Floating-point numbers
 浮点数用于表示小数
 <details>
 <summary> Type</summary>
