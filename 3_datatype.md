@@ -1,7 +1,7 @@
 # RUST DataType
 
 ## scalar (simple) 
-- Integers
+### Integers
 <details>
 <summary> Signed</summary>
 
@@ -48,7 +48,7 @@ fn main() {
 ```
 </details>
 
-- Booleans
+### Booleans
 (true/false)bool变量占用1-bit的内存空间
 ```text
 fn main() {
@@ -57,7 +57,7 @@ fn main() {
 }
 ```
 
-- Characters
+### Characters
 <details>
 <summary> char</summary>
 
@@ -84,7 +84,7 @@ fn main() {
 
 ## compound (combined)
 
-- Array
+### Array
 数组分为定长和不定长数组，数组内部参数的类型和数组类型一致。
 <details>
 <summary>定长数组</summary>
@@ -113,7 +113,7 @@ fn main() {
 ```
 </details>
 
-- Tuples
+### Tuples
 元组数组中各参数的类型可以不一致，用于输入/接收不同类型的数据变量
 ```text
 fn main() {
@@ -125,10 +125,12 @@ fn main() {
                              // tuple.4 would result in a compilation error!
 }
 ```
-- Struct
+### Struct
 结构体用于表示通用的数据结构，内部参数可以指定名称或者直接通过类型定义
 
 结构体内部参数在new 新的对象时必须全部初始化新的值。
+<details>
+<summary>参数定义的结构体</summary>
 ```text
 fn main() {
     struct Mytuple {
@@ -150,6 +152,25 @@ fn main() {
                                      // tuple.4 would result in a compilation error!
 }
 ```
+</details>
+
+<details>
+<summary>缺省结构体</summary>
+```text
+fn main() {
+    struct Mytuple(bool, u32, i8, f32);
+    let tuple = Mytuple (true, 45, -4, 45.098);
+    println!("{}", tuple.0); // true
+    println!("{}", tuple.1); // 45
+    println!("{}", tuple.2); // -4
+    println!("{}", tuple.3); // 45.098
+                                     // tuple.4 would result in a compilation error!
+}
+```
+</details>
+
+
+
 
 
 
