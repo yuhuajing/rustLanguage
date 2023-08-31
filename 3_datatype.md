@@ -169,3 +169,83 @@ fn main() {
 }
 ```
 </details>
+
+### ENUM
+
+枚举类型，内部定义可复写的参数状态
+
+<details>
+<summary>简单枚举</summary>
+
+```text
+#![allow(unused)]
+fn main() {
+enum CardinalDirection {
+    North,
+    East,
+    South,
+    West,
+}
+
+let mut d = CardinalDirection::East;
+d= CardinalDirection::West;
+
+if let CardinalDirection::East = d {
+    println!("We are going east!");
+} else {
+    println!("We are not going east but in some other direction!");
+}
+}
+```
+</details>
+
+<details>
+<summary>复杂枚举</summary>
+
+在枚举中增加复杂数据结构。
+
+<code>match</code>关键字进行enum字段的匹配，根据不同的分支处理。
+
+```text
+#![allow(unused)]
+fn main() {
+    enum CardinalDirection {
+        Squre { side: f64 },
+        Circle { radius: f64 },
+        Rectangle { width: f64, height: f64 },
+        West,
+    }
+
+    let mut d = CardinalDirection::West;
+
+    if let CardinalDirection::West = d {
+        println!("We are going west!");
+    } else {
+        println!("We are not going west but in some other direction!");
+    }
+
+    let s = CardinalDirection::Rectangle {
+        width: 12.3,
+        height: 34.7,
+    };
+    match s {
+        CardinalDirection::Squre { side } => {
+            println!("A {}x{} square!", side, side);
+        }
+        CardinalDirection::Rectangle { width, height } => {
+            println!("A {}x{} rectangle!", width, height);
+        }
+        CardinalDirection::Circle { radius } => {
+            println!(
+                "A circle of radius {} and diameter {}!",
+                radius,
+                radius * 2.0
+            );
+        }
+        CardinalDirection::West => {
+            println!("We are going west!");
+        }
+    }
+}
+```
+</details>
