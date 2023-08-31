@@ -1,8 +1,16 @@
 #![allow(unused)]
 fn main() {
-    let val: i32 = 10;
-    let r1 = &val;
-    // This creates a copy of the value 10.
-    let val2 = *r1;
-    println!("Using width {}.", val2);
+    struct Person {
+        name: &'static str,
+        age: u8,
+        isman: bool,
+    }
+
+    let p = Person {
+        name: "Mike",
+        age: 18,
+        isman: true,
+    };
+    let Person { name, age, .. } = p;
+    println!("{}.", name);
 }
