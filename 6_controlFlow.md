@@ -63,6 +63,8 @@ println!("Launch!");
 <summary>Example</summary>
 其中 `a..=b(a<=i<=b)`和`a..b(a<=i`<`b)` 表示遍历a~b，`=`表示终止条件是`<` 或者`<=`
 
+`rev()`函数表示一次读取每个遍历值
+
 ```text
 
 #![allow(unused)]
