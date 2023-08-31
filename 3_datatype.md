@@ -83,7 +83,6 @@ fn main() {
 </details>
 
 ## compound (combined)
-
 ### Array
 数组分为定长和不定长数组，数组内部参数的类型和数组类型一致。
 <details>
@@ -131,6 +130,7 @@ fn main() {
 结构体内部参数在new 新的对象时必须全部初始化新的值。
 <details>
 <summary>参数定义的结构体</summary>
+
 ```text
 fn main() {
     struct Mytuple {
@@ -156,6 +156,7 @@ fn main() {
 
 <details>
 <summary>缺省结构体</summary>
+
 ```text
 fn main() {
     struct Mytuple(bool, u32, i8, f32);
@@ -168,9 +169,3 @@ fn main() {
 }
 ```
 </details>
-
-
-
-
-
-
