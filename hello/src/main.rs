@@ -1,16 +1,11 @@
 #![allow(unused)]
 fn main() {
-    struct Person {
-        name: &'static str,
-        age: u8,
-        isman: bool,
+    let score = 99;
+    if score < 60 {
+        println!("C");
+    } else if score >= 60 && score < 95 {
+        println!("B");
+    } else {
+        println!("A");
     }
-
-    let p = Person {
-        name: "Mike",
-        age: 18,
-        isman: true,
-    };
-    let Person { name, age, .. } = p;
-    println!("{}.", name);
 }
