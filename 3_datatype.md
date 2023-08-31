@@ -83,3 +83,73 @@ fn main() {
 </details>
 
 ## compound (combined)
+
+- Array
+数组分为定长和不定长数组，数组内部参数的类型和数组类型一致。
+<details>
+<summary>定长数组</summary>
+
+Array定长数组，在定义时指定类型和长度：<code>[T;N]</code> where T is he type and the N is the size of the array. 或者 直接初始化数组。总之数组长度固定。
+```text
+fn main() {
+    let array: [u32; 3] = [1, 2, 3]; // let array = [1, 2, 3]; 
+    println!("{}", array[0]); // 1
+    println!("{}", array[1]); // 2
+    println!("{}", array[2]); // 3
+}
+```
+</details>
+<details>
+<summary>不定长数组</summary>
+
+不定长数组叫做切片，在定义时通过指定内存地址分配不定长空间，切片数组长度不固定。
+```text
+fn main() {
+    let array: &[u32] = &[1, 2, 3]; // let array = &[1, 2, 3]; 
+    println!("{}", array[0]); // 1
+    println!("{}", array[1]); // 2
+    println!("{}", array[2]); // 3
+}
+```
+</details>
+
+- Tuples
+元组数组中各参数的类型可以不一致，用于输入/接收不同类型的数据变量
+```text
+fn main() {
+    let tuple: (bool, u32, i8, f32) = (true, 45, -4, 45.098);
+    println!("{}", tuple.0); // true
+    println!("{}", tuple.1); // 45
+    println!("{}", tuple.2); // -4
+    println!("{}", tuple.3); // 45.098
+                             // tuple.4 would result in a compilation error!
+}
+```
+- Struct
+结构体用于表示通用的数据结构，内部参数可以指定名称或者直接通过类型定义
+
+结构体内部参数在new 新的对象时必须全部初始化新的值。
+```text
+fn main() {
+    struct Mytuple {
+        bool_param: bool,
+        uint_param: u32,
+        int_param: i8,
+        float_param: f32,
+    }
+    let tuple = Mytuple {
+        bool_param: true,
+        uint_param: 45,
+        int_param: -4,
+        float_param:45.098 // Error 如果缺失结构体中的浮点数的值的话，就会报错missing `float_param`
+    };
+    println!("{}", tuple.bool_param); // true
+    println!("{}", tuple.uint_param); // 45
+    println!("{}", tuple.int_param); // -4
+    println!("{}", tuple.float_param); // 45.098  
+                                     // tuple.4 would result in a compilation error!
+}
+```
+
+
+
