@@ -15,6 +15,22 @@ fn main() {
     }
 }
 ```
+
+`let x = if conditions{}`,根据if条件定义参数变量
+
+```text
+#![allow(unused)]
+fn main() {
+let some_condition = true;
+let x = if some_condition {
+    println!("It was true!");
+    1
+} else {
+    2
+};
+}
+```
+
 ## looping
 ### loop
 无限循环直到 `break` 终止循环或者 `return`跳出函数
@@ -22,7 +38,6 @@ fn main() {
 <summary>Example</summary>
 
 ```text
-
 #![allow(unused)]
 fn main() {
 let mut i = 10;
