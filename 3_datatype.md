@@ -73,7 +73,7 @@ fn main() {
 <details>
 <summary>str</summary>
 
-字符串类型str，需要用 & 指定不定长的存储空间
+字符串类型str，需要用 & 指定不定长的存储空间，因为字符串可以截取改变长度。
 ```text
 fn main() {
     let hell:&str = "Hell World!";

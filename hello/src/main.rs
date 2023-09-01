@@ -1,36 +1,12 @@
-#![allow(unused)]
-use std::ops::Add;
+fn append_world(value: &mut String) {
+    value.push_str(", World!");
+}
+
 fn main() {
-    struct Sequence<A, B, C> {
-        first: A,
-        second: B,
-        third: C,
-    }
-    impl<A, B, C> Sequence<A, B, C>
-    where
-        A: Copy,
-        B: Copy,
-    {
-        pub fn get_first(&self) -> A {
-            self.first
-        }
-        pub fn get_second(&self) -> B {
-            self.second
-        }
-    }
-
-    let sequence = Sequence {
-        first: "mik",
-        second: 3.987,
-        third: 5,
-    };
-    println!("{}", sequence.get_first());
-    println!("{}", sequence.get_second());
-
-    enum MyEnum<A, B> {
-        A(A),
-        B(B),
-    }
-    let e = MyEnum::<u32, f32>::B(3.6982);
-    //  println!("{}", e);
+    let mut s1 = String::from("Hello");
+    let mut w1 = &mut s1;
+    let w2 = &mut w1;  //ok
+   //  let w2 = &mut s1;  // error : s1 cannot be borrowed mutably more than once at a time.
+    append_world(w1);
+    println!("The value is now {s1:?}.");
 }
