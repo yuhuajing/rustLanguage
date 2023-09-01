@@ -1,37 +1,36 @@
 #![allow(unused)]
+use std::ops::Add;
 fn main() {
-    struct Person {
-        name: &'static str,
-        age: u8,
+    struct Sequence<A, B, C> {
+        first: A,
+        second: B,
+        third: C,
     }
-    impl Person {
-        fn get_name(&self) -> &'static str {
-            self.name
+    impl<A, B, C> Sequence<A, B, C>
+    where
+        A: Copy,
+        B: Copy,
+    {
+        pub fn get_first(&self) -> A {
+            self.first
         }
-        fn set_name(&mut self, _name: &'static str) {
-            self.name = _name;
+        pub fn get_second(&self) -> B {
+            self.second
         }
     }
 
-    let mut person = Person {
-        name: "Mike",
-        age: 18,
+    let sequence = Sequence {
+        first: "mik",
+        second: 3.987,
+        third: 5,
     };
-    println!("{}", person.get_name());
-    person.set_name("Inn");
-    println!("{}", person.get_name());
+    println!("{}", sequence.get_first());
+    println!("{}", sequence.get_second());
 
-    let c = |x| x * 2;
-    println!("{}", c(6));
+    enum MyEnum<A, B> {
+        A(A),
+        B(B),
+    }
+    let e = MyEnum::<u32, f32>::B(3.6982);
+    //  println!("{}", e);
 }
-
-fn perform_operation(should_add: bool, amount_to_add: i32, value: i32) -> i32 {
-    let operation: Box<dyn Fn(i32) -> i32> = if should_add {
-        Box::new(|value: i32| value + amount_to_add)
-    } else {
-        Box::new(|value: i32| value + 1)
-    };
-
-    operation(value)
-}
-
