@@ -1,0 +1,67 @@
+# trait
+`trait`关键字为数据结构实现通用的配置,为数据结构绑定额外的数据类型定义和函数。
+
+
+<details>
+<summary>Types</summary>
+
+```text
+struct Index(i32);
+trait Joining {
+    // Associated types
+    type A;
+    type B;
+    fn join_to_str(&self, _: &Self::A, _: &Self::B) -> String;
+}
+impl Joining for Index {
+    // Define type of associated types
+    type A = String;
+    type B = String;
+    fn join_to_str(&self, name: &Self::A, last_name: &Self::B) -> String {
+        format!("{}. {} {}", self.0, name, last_name)
+    }
+}
+fn get_joined_str<J: Joining>(joining: &J, name: &J::A, last_name: &J::B) -> String {
+    format!("Person: {}", joining.join_to_str(name, last_name))
+}
+fn main() {
+    let index = Index(10);
+    println!(
+        "{}",
+        get_joined_str(&index, &"John".to_string(), &"Connor".to_string())
+    );
+}
+```
+</details>
+
+<details>
+<summary>Constants</summary>
+
+```text
+struct Mystruct;
+trait ConstantValue {
+    // Associated types
+    const VALUE:u32;
+    fn get_te()->u32;
+}
+impl ConstantValue for Mystruct {
+    // Define type of associated types
+    const VALUE:u32=10;
+    fn get_te() -> u32 {
+        Self::VALUE
+    }
+}
+
+fn get_value<J: ConstantValue>(_joining: &J) -> String {
+    format!("Person: {}", J::get_te())
+}
+
+fn main() {
+    let mystruct = Mystruct{};
+    println!(
+        "{}",
+        get_value(&mystruct)
+    );
+}
+```
+</details>

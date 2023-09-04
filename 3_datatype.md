@@ -170,6 +170,50 @@ fn main() {
 ```
 </details>
 
+<details>
+<summary> Examples </summary>
+
+```text
+struct Person {
+    name: &'static str,
+    age: u32,
+    isman: bool,
+}
+
+impl Person {
+    fn new() -> Person {
+        Person {
+            name: "MIke",
+            age: 18,
+            isman: true,
+        }
+    }
+    fn get_name(&self) -> &'static str {
+        self.name
+    }
+}
+
+struct Person2(&'static str,u32,bool);
+
+impl Person2{
+    fn get_name(&self) -> &'static str {
+        self.0
+    }
+}
+
+fn main() {
+    let person = Person {
+        name: "MIke",
+        age: 18,
+        isman: true,
+    };
+    println!("{}", person.get_name());
+    let person2 = Person2("Leo",18,true);
+    println!("{}", person2.get_name());
+}
+```
+</details>
+
 ### ENUM
 
 枚举类型，内部定义可复写的参数状态
