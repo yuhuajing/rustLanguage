@@ -1,12 +1,19 @@
-fn append_world(value: &mut String) {
-    value.push_str(", World!");
+/// The book type provided by an external API.
+#[derive(Debug)]
+enum Option<T>{
+    Some(T),
+    None,
+}
+
+fn first_elem<T>(array: &[T]) -> Option<&T>{
+    if array.len()>0{
+        Option::Some(&array[0])
+    }else{
+        Option:None
+    }
 }
 
 fn main() {
-    let mut s1 = String::from("Hello");
-    let mut w1 = &mut s1;
-    let w2 = &mut w1;  //ok
-   //  let w2 = &mut s1;  // error : s1 cannot be borrowed mutably more than once at a time.
-    append_world(w1);
-    println!("The value is now {s1:?}.");
+    let a =[1,2,3];
+    
 }
