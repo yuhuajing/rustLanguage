@@ -1,58 +1,24 @@
-struct Car;
-struct Motorcycle;
-
-trait Vehicle {
-    fn get_wheel_count() -> u32;
-}
-
-impl Vehicle for Car {
-    fn get_wheel_count() -> u32 {
-        4
-    }
-}
-
-impl Vehicle for Motorcycle {
-    fn get_wheel_count() -> u32 {
-        2
-    }
-}
-
-fn get_value<J: Vehicle>(_joining: &J) -> String {
-    format!("Wheel: {}", J::get_wheel_count())
-}
-
-enum tools {
-    Car { wheel_count: u32 },
-    Motorcycle { wheel_count: u32 },
-}
-trait Vehicle2 {
-    fn new_car() -> Self;
-    fn new_motorcycle() -> Self;
-    fn wheel_count(&self) -> u32;
-}
-
-impl Vehicle2 for tools {
-    fn new_car() -> Self {
-        Self::Car { wheel_count: 4 }
-    }
-    fn new_motorcycle() -> Self {
-        Self::Car { wheel_count: 2 }
-    }
-    fn wheel_count(&self) -> u32 {
-        match self {
-            tools::Car { wheel_count, .. } => *wheel_count,
-            tools::Motorcycle { wheel_count, .. } => *wheel_count,
-        }
-    }
-}
+use std::collections::HashSet;
+use std::collections::BTreeSet;
 
 fn main() {
-    let mystruct = Motorcycle {};
-    println!("{}", get_value(&mystruct));
+    let mut cool_numbers = HashSet::from([21, 2, 16]); // 随机排列
+    println!("{:?}", cool_numbers.iter()); //[21, 2, 16]
+    cool_numbers.insert(8);
+    println!("{:?}", cool_numbers.iter()); //[21, 16, 2, 8]
+    cool_numbers.insert(16);
+    println!("{:?}", cool_numbers.iter()); //[21, 16, 2, 8]
+    //Delet data
+    cool_numbers.remove(&2);
+    println!("{:?}", cool_numbers.iter()); //{16, 21, 8}
 
-    let mycar = tools::new_car();
-    println!("{}", mycar.wheel_count());
-
-    let motorcycle = tools::new_motorcycle();
-    println!("{}", motorcycle.wheel_count());
+    let mut tree_numbers = BTreeSet::from([21, 2, 16]); //顺序排列
+    println!("{:?}", tree_numbers.iter()); //2，16，21
+    tree_numbers.insert(8);
+    println!("{:?}", tree_numbers.iter()); //Iter([2, 8, 16, 21])
+    tree_numbers.insert(16);
+    println!("{:?}", tree_numbers.iter()); //Iter([2, 8, 16, 21])
+     //Delet data
+     tree_numbers.remove(&2);
+     println!("{:?}", tree_numbers.iter()); //Iter([8, 16, 21])
 }

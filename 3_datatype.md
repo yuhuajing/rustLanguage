@@ -293,3 +293,124 @@ fn main() {
 }
 ```
 </details>
+
+### Sequences
+表示一组同类型数据的集合，数组`[T;N]`、`Vec <T>`,其中数组表示固定大小的数据序列，但是Vec表示栈数据结构的动态数据增`push` 和 删`pop`。
+
+<details>
+<summary>Examples</summary>
+
+```text
+fn main() {
+    let mut vecValue:Vec<u8> = vec![0,1,2,3];
+    println!("{:?}", vecValue.iter());  //Iter([0, 1, 2, 3])
+    vecValue.push(8);
+    println!("{:?}", vecValue.iter()); //Iter([0, 1, 2, 3, 8])
+    println!("{:?}", vecValue.pop()); //8
+    println!("{:?}", vecValue.iter());// Iter([0, 1, 2, 3])
+        struct Person {
+        name: &'static str,
+        age: u32,
+    }
+
+    let people: Vec<Person> = vec![
+        Person {
+            name: "MIke",
+            age: 18,
+        },
+        Person {
+            name: "Leo",
+            age: 19,
+        },
+    ];
+
+    println!(
+        "{:?}",
+        people.iter().find(|profile| profile.name == "Leo").unwrap().age
+    ); //19  unwrap 表示将数据结构映射出来 
+}
+```
+</details>
+
+### HashMap<K, V> and BTreeMap<K, V>
+
+HashMap<K, V>存储时需要 hash K 值，因此HashMap<K, V> 要求 K 可以被hash。
+
+BTreeMap<K, V>存储时需要按照key值进行排序存储，因此BTreeMap<K, V> 要求 K 是可以排序的。
+
+<details>
+<summary>Examples</summary>
+
+```text
+fn main() {
+    #[derive(Clone)]
+    struct Person {
+        name: String,
+        age: u32,
+    }
+
+    let people: Vec<Person> = vec![
+        Person {
+            name: "Mike".to_string(),
+            age: 18,
+        },
+        Person {
+            name: "Leo".to_string(),
+            age: 19,
+        },
+    ];
+    let name_to_profile: std::collections::HashMap<String, Person> = people
+    // let name_to_profile: std::collections::BTreeMap<String, Person> = people
+        .clone()
+        .into_iter()
+        .map(|profile| (profile.name.clone(), profile))
+        .collect();
+
+    println!("{:?}", name_to_profile["Mike"].age); // 30
+
+    println!(
+        "{:?}",
+        people
+            .iter()
+            .find(|profile| profile.name == "Leo")
+            .unwrap()
+            .age
+    ); //19  unwrap 表示将数据结构映射出来
+}
+```
+<details>
+
+### Set
+`HashSet<T>、BTreeSet<T>`集合存储不重复的数值
+> https://doc.rust-lang.org/std/collections/struct.HashSet.html#method.capacity
+
+<details>
+<summary>Examples</summary>
+
+```text
+use std::collections::HashSet;
+use std::collections::BTreeSet;
+
+fn main() {
+    let mut cool_numbers = HashSet::from([21, 2, 16]); // 随机排列
+    println!("{:?}", cool_numbers.iter()); //[21, 2, 16]
+    cool_numbers.insert(8);
+    println!("{:?}", cool_numbers.iter()); //[21, 16, 2, 8]
+    cool_numbers.insert(16);
+    println!("{:?}", cool_numbers.iter()); //[21, 16, 2, 8]
+    //Delet data
+    cool_numbers.remove(&2);
+    println!("{:?}", cool_numbers.iter()); //{16, 21, 8}
+
+    let mut tree_numbers = BTreeSet::from([21, 2, 16]); //顺序排列
+    println!("{:?}", tree_numbers.iter()); //2，16，21
+    tree_numbers.insert(8);
+    println!("{:?}", tree_numbers.iter()); //Iter([2, 8, 16, 21])
+    tree_numbers.insert(16);
+    println!("{:?}", tree_numbers.iter()); //Iter([2, 8, 16, 21])
+     //Delet data
+     tree_numbers.remove(&2);
+     println!("{:?}", tree_numbers.iter()); //Iter([8, 16, 21])
+}
+```
+</details>
