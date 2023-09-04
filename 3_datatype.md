@@ -76,8 +76,14 @@ fn main() {
 字符串类型str，需要用 & 指定不定长的存储空间，因为字符串可以截取改变长度。
 ```text
 fn main() {
-    let hell:&str = "Hell World!";
-    println!("{}",hell);
+    let mut hello = String::from("Hello ");
+    hello.push('w'); // insert a signle charactor
+    hello.push_str("orld!"); // insert a string charactor
+    println!("{}", hello); 
+
+    let mut qian:&'static str = "qian";
+   // qian.push("king");
+    println!("{}", qian); 
 }
 ```
 </details>
