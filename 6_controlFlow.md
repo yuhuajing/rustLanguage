@@ -2,7 +2,7 @@
 
 ## If
 `if statement{}else if statement{}else{}`
-```text
+```rust
 #![allow(unused)]
 fn main() {
     let score = 99;
@@ -18,7 +18,7 @@ fn main() {
 
 `let x = if conditions{}`,根据if条件定义参数变量
 
-```text
+```rust
 #![allow(unused)]
 fn main() {
 let some_condition = true;
@@ -37,7 +37,7 @@ let x = if some_condition {
 <details>
 <summary>Example</summary>
 
-```text
+```rust
 #![allow(unused)]
 fn main() {
 let mut i = 10;
@@ -58,7 +58,7 @@ println!("Launch!");
 <details>
 <summary>Example</summary>
 
-```text
+```rust
 
 #![allow(unused)]
 fn main() {
@@ -80,8 +80,7 @@ println!("Launch!");
 
 `rev()`函数表示一次读取每个遍历值
 
-```text
-
+```rust
 #![allow(unused)]
 fn main() {
 for i in (1..=10).rev() {
@@ -94,3 +93,18 @@ println!("Launch!");
 }
 ```
 </details>
+
+## match
+
+```rust
+fn main() {
+    let number = 5;
+
+    match number {
+        1 => println!("One"),
+        2 => println!("Two"),
+        3 => println!("Three"),
+        _ => println!("Other"), // 这是通配符分支，匹配所有其他情况
+    }
+}
+```

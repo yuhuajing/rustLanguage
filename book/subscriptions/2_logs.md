@@ -1,3 +1,40 @@
+# Subscribing to Logs
+
+To subscribe to logs, create a Filter object that specifies the criteria for the logs you want to listen to. Then, pass the filter to the Provider's subscribe_logs method:
+
+```rust
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let provider = Provider::<Http>::try_from("http://localhost:8545")?;
+
+    let filter = Filter::new().address("0xcontract_address_here".parse()?);
+
+    let mut stream = provider.subscribe_logs(filter).await?;
+
+    // Your code to handle logs goes here.
+
+    Ok(())
+
+}
+```
+
+You can now listen to logs that match your filter criteria:
+
+```rust
+while let Some(log) = stream.next().await {
+    match log {
+        Ok(log) => {
+            println!("New log: {:?}", log);
+        }
+        Err(e) => {
+            eprintln!("Error: {:?}", e);
+        }
+    }
+}
+```
+
+Here is another example of subscribing to logs:
+
+```rust
 use ethers::{
     core::{
         abi::AbiDecode,
@@ -34,14 +71,12 @@ async fn main() -> Result<()> {
             WETH_ADDRESS.parse::<Address>()?,
         ));
 
-    let mut stream = client.subscribe_logs(&erc20_transfer_filter).await?.take(50);
-    //let transEv:String = String::from("0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef");
+    let mut stream = client.subscribe_logs(&erc20_transfer_filter).await?.take(500);
+    let transEv:String = String::from("0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef");
 
     while let Some(log) = stream.next().await {
-        println!("{}",{format!("{:?}",log.topics[0])});
-        let h256_str = format!("{:?}", log.topics[0]);
-        match h256_str.as_str() {
-            "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef" => println!("Transfer"),
+        match format!("{:?}",log.topics[0]){
+            transEv => println!("Transfer"),
             _ => println!("others"),
         }
         // println!(
@@ -58,3 +93,4 @@ async fn main() -> Result<()> {
 
     Ok(())
 }
+```
