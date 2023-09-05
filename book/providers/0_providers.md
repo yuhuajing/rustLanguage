@@ -37,5 +37,8 @@ pub struct Provider<P> {
 
 Now that you have a basis for what the `Provider` type actually is, the next few sections will walk through each implementation of the `Provider`, starting with the HTTP provider.
 
+Provider内置的函数：
+> https://docs.rs/ethers/latest/ethers/providers/trait.Middleware.html#
+
 [middleware]: https://docs.rs/ethers/latest/ethers/providers/trait.Middleware.html
 [provider]: https://docs.rs/ethers/latest/ethers/providers/struct.Provider.html

@@ -13,7 +13,7 @@ use ethers::providers::{Http, Middleware, Provider};
 async fn main() -> eyre::Result<()> {
     // Initialize a new Http provider
     let rpc_url = "https://eth.llamarpc.com";
-    let provider = Provider::try_from(rpc_url)?;
+    let provider = Provider::<Http>::try_from(rpc_url)?;
 
     Ok(())
 }

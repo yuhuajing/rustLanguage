@@ -1,5 +1,7 @@
 # Intro
 
+> https://www.gakonst.com/ethers-rs/getting-started/intro.html
+
 Welcome to the hands-on guide for the ethers-rs library!
 
 This documentation contains a collection of examples demonstrating how to use the library to build Ethereum-based applications in Rust. The examples cover a range of topics, from basic smart contract interactions to more advanced usage of ethers-rs.
