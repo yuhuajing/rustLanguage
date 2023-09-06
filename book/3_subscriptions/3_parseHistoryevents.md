@@ -1,3 +1,19 @@
+# Listen events by type
+> https://docs.rs/ethers/latest/ethers/contract/struct.Event.html#method.from_block
+
+监听Event数据都是建立 WS 链接。
+
+如果没有定义截止区块 `to_block()` ， 表示从当前的 `from` 区块开始解析，到达最新区快后持续监听。 
+
+## stream() subscribe()
+两者都是用来解析event数据，但是stream用于轮询以太坊节点并异步获取事件；而subscribe用于实时订阅合约事件，减少了轮询的时间消耗。
+
+subscribe订阅的是具体的合约事件，通过合约内部的ABI或时间签名构建事件过滤器，适用于监控特定的智能合约事件的情况。
+
+## stream_with_meta() subscribe_with_meta()
+监听事件的同时返回事件的数据，用于根据事件内容处理业务逻辑的情况。
+
+```rust
 use ethers::{
     contract::abigen,
     core::types::{Address, ValueOrArray},
@@ -102,3 +118,4 @@ async fn listen_ws_specific_events(contract: &IERC20<Provider<Ws>>) -> Result<()
     }
     Ok(())
 }
+```

@@ -17,6 +17,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
+`subscribe_logs()` 用于订阅所有以太坊网络上的区块日志，监控整个网络的区块日志，包括合约事件、交易、合约创建等。由于无法指定智能合约时间，需要解析过滤区块日志。通常用于区块链浏览器和分析工具。
+
+
 You can now listen to logs that match your filter criteria:
 
 ```rust
@@ -71,12 +74,14 @@ async fn main() -> Result<()> {
             WETH_ADDRESS.parse::<Address>()?,
         ));
 
-    let mut stream = client.subscribe_logs(&erc20_transfer_filter).await?.take(500);
-    let transEv:String = String::from("0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef");
+    let mut stream = client.subscribe_logs(&erc20_transfer_filter).await?.take(50);
+    //let transEv:String = String::from("0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef");
 
     while let Some(log) = stream.next().await {
-        match format!("{:?}",log.topics[0]){
-            transEv => println!("Transfer"),
+        println!("{}",{format!("{:?}",log.topics[0])});
+        let h256_str = format!("{:?}", log.topics[0]);
+        match h256_str.as_str() {
+            "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef" => println!("Transfer"),
             _ => println!("others"),
         }
         // println!(
