@@ -1,5 +1,7 @@
 # Providers
 
+> https://docs.rs/ethers-providers/2.0.9/ethers_providers/struct.Provider.html
+
 A Provider is an abstraction of a connection to the Ethereum network, providing a concise, consistent interface to standard Ethereum node functionality.
 
 This is achieved through the [`Middleware` trait][middleware], which provides the interface for the [Ethereum JSON-RPC API](https://ethereum.github.io/execution-apis/api-documentation) and other helpful methods, explained in more detail in [the Middleware chapter](../middleware/middleware.md), and the [`Provider`][provider] struct, which implements `Middleware`.
@@ -42,3 +44,4 @@ Provider内置的函数：
 
 [middleware]: https://docs.rs/ethers/latest/ethers/providers/trait.Middleware.html
 [provider]: https://docs.rs/ethers/latest/ethers/providers/struct.Provider.html
+
