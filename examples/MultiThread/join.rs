@@ -25,14 +25,6 @@ async fn get_ws_client() -> Provider<Ws> {
 async fn main() -> Result<()> {
     let client = Arc::new(get_ws_client().await);
 
-    // let last_block = client
-    //     .get_block(BlockNumber::Latest)
-    //     .await?
-    //     .unwrap()
-    //     .number
-    //     .unwrap();
-    // println!("last_block: {last_block}");
-
     //getlogs(client.clone()).await?;
     //getbalance(client.clone()).await?;
 
