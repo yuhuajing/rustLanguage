@@ -31,6 +31,27 @@ let x = if some_condition {
 }
 ```
 
+option对象判断-
+```rust
+           // let account_name: String = val.clone().unwrap_or_default();
+            // if "bar" == account_name {
+            //     println!("account_name = {account_name}");
+            //    // 1
+            // }else if account_name== Null{
+            //     println!("null");
+            // }
+            let account_name: Option<String> = val.clone();
+            if let Some(name) = &account_name {
+                if "bar" == name {
+                    println!("account_name = {}", name);
+                } else {
+                    println!("null");
+                }
+            } else {
+                println!("account_name is null");
+            }
+```
+
 ## looping
 ### loop
 无限循环直到 `break` 终止循环或者 `return`跳出函数
