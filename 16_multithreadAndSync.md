@@ -12,9 +12,27 @@ fn main() {
         println!("main: {i}");
         std::thread::yield_now();
     }
-    handle.join().unwrap();
+    handle.join().unwrap(); //通过调用 handle.join，可以让当前线程阻塞，直到等待的子线程的结束
 }
 ```
+多线程中使用外部数据，通过`move`关键字让闭包拿走当前环境中的某个值，同样使用 `move`关键字讲环境值的所有权从一个线程转移到另一个线程。
+```rust
+use std::thread;
+
+fn main() {
+    let v = vec![1, 2, 3];
+
+    let handle = thread::spawn(move || {
+        println!("Here's a vector: {:?}", v);
+    });
+
+    handle.join().unwrap();
+
+    // 下面代码会报错borrow of moved value: `v`
+    // println!("{:?}",v);
+}
+```
+
 `std::sync`实现控制数据同步的通道读写结构
 ```rust
 
